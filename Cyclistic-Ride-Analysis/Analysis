@@ -1,0 +1,127 @@
+
+  ---- Number of users for each user group------
+  select [User_Type],count([User_Type]) as Number_of_Users
+  from[bike_share].[cleaned_cyclistic_bike_share(2023)]
+  group by [User_Type]
+  order by count([User_Type]) desc
+
+  -------number of bikes for each bike type-----
+  select [Bike_Type],count([Bike_Type]) as Number_of_Bikes
+  from[bike_share].[cleaned_cyclistic_bike_share(2023)]
+  group by [Bike_Type]
+  order by count([Bike_Type])desc
+
+  --------bike usuage according to user group------
+  select [Bike_Type],[User_Type],count([Bike_Type]) as Number_of_Bikes
+  from[bike_share].[cleaned_cyclistic_bike_share(2023)]
+  group by [Bike_Type],[User_Type]
+  order by count([User_Type])desc
+
+
+  ----- days of the week bike usage-------
+  ---number of bikes taken daily by user group---
+  select[Day_of_Week(Started)],[User_Type],count([Day_of_Week(Started)]) as Bike_Usage_by_day
+  from[bike_share].[cleaned_cyclistic_bike_share(2023)]
+  group by [Day_of_Week(Started)],[User_Type]
+  order by count([Day_of_week(Started)])desc,[User_Type]
+
+  ---number of bikes return daily by user group---
+  select[Day_of_Week(Ended)],[User_Type],count([Day_of_Week(Ended)]) as Bike_Usage_by_day
+  from[bike_share].[cleaned_cyclistic_bike_share(2023)]
+  group by [Day_of_Week(Ended)],[User_Type]
+  order by count([Day_of_week(Ended)]) desc
+
+
+  ----number of rides according to days length----
+  select[Day_of_week(Started)],[Day_of_Week(Ended)],count([Day_of_Week(Ended)]) as Bike_Usage_by_day
+  from[bike_share].[cleaned_cyclistic_bike_share(2023)]
+  group by [Day_of_Week(Ended)],[Day_of_week(Started)]
+  order by count([Day_of_Week(Ended)])  desc
+
+
+-----Number of rides according to user type (1 or more days ride)  
+ SELECT
+    [User_Type],    
+    SUM(CASE WHEN [Day_of_week(Started)] = [Day_of_Week(Ended)] THEN 1 ELSE 0 END) AS total_rides_same_day,
+    SUM(CASE WHEN [Day_of_week(Started)] <> [Day_of_Week(Ended)] THEN 2 ELSE 0 END) AS total_rides_different_days
+FROM [bike_share].[cleaned_cyclistic_bike_share(2023)]
+GROUP BY [User_Type] --[Bike_Type];
+
+   ----- END days of the week per bike usage-------
+
+   ----no of rides by hour with most rides---
+   select [Start_Hour] as Time,[User_Type],count([Start_Hour]) as Number_of_rides
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] ='casual'
+   group by [Start_Hour],[User_Type]
+   order by count([Start_Hour]) desc
+
+    select [End_Hour] as Time,[User_Type],count([End_Hour]) as Number_of_rides
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] ='casual'
+   group by [End_Hour],[User_Type]
+   order by count([End_Hour]) desc
+   ---
+    select [Start_Hour] as Time,[User_Type],count([Start_Hour]) as Number_of_rides
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] ='member'
+   group by [Start_Hour],[User_Type]
+   order by count([Start_Hour]) desc
+   ---
+    select [End_Hour] as Time,[User_Type],count([End_Hour]) as Number_of_rides
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] ='member'
+   group by [End_Hour],[User_Type]
+   order by count([End_Hour]) desc
+
+   --month with most rides---
+   select top 10 [Month_of_Year(Started)]  as month_of_year ,[User_Type],count([Month_of_Year(Started)]) as Number
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   group by [Month_of_Year(Started)],[User_Type]
+   order by count([Month_of_Year(Started)]) desc
+
+   ---month with less rides---
+   select top 10 [Month_of_Year(Started)]  as month_of_year ,[User_Type],count([Month_of_Year(Started)]) as Number
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   group by [Month_of_Year(Started)],[User_Type]
+   order by count([Month_of_Year(Started)]) asc
+
+   ----average distance covered per month------
+   select[Month_of_Year(Started)],round(AVG([Distance_Covered]),2) as [Distance_Covered(miles)]
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] = 'member'
+   group by [Month_of_Year(Started)]
+   order by AVG([Distance_Covered]) desc
+ 
+ ----average distance covered per month------
+   select[Month_of_Year(Started)],round(AVG([Distance_Covered]),2) as [Distance_Covered(miles)]
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] = 'casual'
+   group by [Month_of_Year(Started)]
+   order by AVG([Distance_Covered]) desc
+
+   ----average ride length covered per month----
+   select [Month_of_Year(Started)],avg([Ride_Length]) as [ride_length]
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] = 'casual'
+   group by [Month_of_Year(Started)]
+   order by avg([Ride_Length]) desc
+
+   ---station with most rides---
+   select top 10
+   [Start_Station],
+   count([Start_Station]) as [Number_of_rides(casual)]
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] = 'casual'
+   group by [Start_Station]
+   order by count([Start_Station]) desc
+
+   ---station with most rides---
+   select top 10
+   [Start_Station],
+   count([Start_Station]) as [Number_of_rides(member)]
+   from [bike_share].[cleaned_cyclistic_bike_share(2023)]
+   where [User_Type] = 'member'
+   group by [Start_Station]    
+   order by count([Start_Station]) desc 
+   

@@ -1,0 +1,74 @@
+-- remove null values
+delete from [bike_share].[cyclistic_12_month]
+where
+ride_id is null
+or rideable_type is null
+or started_at is null
+or ended_at is null
+or start_station_name is null
+or end_station_name is null
+or start_lat is null
+or start_lng is null
+or end_lat is null
+or end_lng is null
+or member_casual is null
+
+--remove dulipates---
+select *,
+count(*) as duplicate_Values
+from [bike_share].[cyclistic_12_month]
+group by
+ride_id,
+rideable_type,
+started_at ,
+ended_at,
+start_station_name, 
+end_station_name, 
+start_lat, 
+start_lng,
+end_lat, 
+end_lng, 
+member_casual 
+Having count(*) >1
+
+with cleaned_cyclistic_bike_share as(
+select
+     ride_id, 
+	 member_casual as User_Type,
+
+	 Bike_Type =
+case
+      when rideable_type like '%_bike' Then REPLACE(rideable_type,'_bike','') --- _bike from rideable_type column
+	    else rideable_type
+end, 
+started_at,
+ended_at,
+end_station_name,
+start_lat,
+start_lng,
+end_lat,
+end_lng,    
+
+--- Ride length---
+DateDiff(MINUTE,started_at,ended_at) as Ride_Length,
+
+--Trim Stations
+Start_Station = TRIM(start_station_name), 
+End_Station = TRIM(end_station_name), 
+
+start_lat, 
+start_lng,
+end_lat, 
+end_lng, 
+
+---distance covered (kilometers)
+Distance_Covered = round(GEOGRAPHY::Point(start_lat, start_lng, 4326).STDistance (GEOGRAPHY::Point(end_lat, end_lng, 4326))/1000.0,1) 
+ 
+from [bike_share].[cyclistic_12_month]
+)
+--order by 'Month_of_Year(ended)')
+select * into biking
+from cleaned_cyclistic_bike_share
+
+
+

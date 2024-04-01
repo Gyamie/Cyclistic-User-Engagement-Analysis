@@ -1,0 +1,238 @@
+# Cyclistic Ride Analysis on User Groups
+
+### Story Link : https://public.tableau.com/app/profile/akua.gyamfuah.boateng/viz/CyclisticRideAnalysisonUserGroups/CyclisticRideAnalysisonUserGroups?publish=yes
+
+### Background 
+
+Cyclistic is a bike-sharing company launched in 2016 with 5,824 bicycles and a network of 692 stations across Chicago. 
+
+The company provides bikes like: 
+
+•	Reclining bikes 
+
+•	Hand tricycles 
+
+•	Cargo bikes 
+
+(for people with disabilities and riders who can’t use the stand two-wheeled bike)
+
+With two types of bike-sharing services. 
+
+ Which include: 
+
+•	Casual Riders: These are customers that opt for a single ride or full-day passes. 
+
+•	Cyclistic Members: These are customers that opt for annual membership. 
+92% of riders opt for the traditional bikes whiles 8% use the assistive options. 
+
+Also, 70% of riders use the service for leisure whiles 30% commute to work meaning the casual riders are more than annual riders. 
+
+ 
+### Business Task 
+Converting casual riders into annual member for sales increment. 
+
+#### Data Analysis Phases 
+
+## 1. Ask Phase: 
+
+##### Problem Statement
+
+
+•	How do annual members and casual riders use Cyclistic bikes differently? 
+
+•	Why would casual riders buy Cyclistic annual memberships? 
+
+•	How can Cyclistic use digital media to influence casual riders to become members? 
+ 
+ 
+##### Insights: 
+
+•	Increase Revenue by targeting casual riders to opt for annual membership. 
+
+•	Check how feasible it is to get casual riders to choose annual membership. 
+
+•	Identify the best ways to get casual riders to become annual members.  
+ 
+
+
+
+
+
+
+## 2. Prepare Phase
+ 
+## Data Source  
+
+The main source of data was from Index of bucket "divvy-tripdata".  
+Also, the data was zipped according to the year and month together with a meta data on the date of modification, Size and Type for each month of the year. 
+ 
+### Data credibility 
+ 
+##### Reliability 
+
+Data is reliable due to its consistent nature, where the is sufficient data about the Cyclistic bike share over the years with various modifications of the data to keep it up to date. 
+ 
+##### Originality 
+
+The data was collected from a third-party source (Amazon), but nevertheless it has proven to be trustworthy. 
+ 
+##### Comprehensiveness 
+
+All the relevant aspects of the data were capture from what happened to also influencing factors like the rideable types, stations names and latitudes and longitudes. 
+ 
+##### Current: 
+
+As historical data is necessary for the analysis, it has a 12-month length of 2023 of trip data which makes it up to data for the analysis. 
+
+ ##### Cited 
+
+Also, the data is cited. 
+
+##### Bias 
+
+The data is also free from bias and available under the Motivate International Inc license. 
+ 
+It has been carefully checked to ensure all security and privacy measures ensured. 
+ 
+##### Assumption 
+
+All Accessibility features are secured. 
+
+## 3. Process Phase
+ 
+### Data importation 
+Pulled a 12-month long dataset which was in a zipped file according to months, extracted them as CSV files according to the months of the year, placed them in a single folder at a centralized location. 
+ 
+### Data cleaning 
+The dataset for some of the various months where too large for Excel. So, the next best thing was SQL Server Management Studio, which was used for the data cleaning.  
+ 
+The total dataset combined had about 5 million records of data. 
+ 
+•	Moving various csv files to cyclistic database tables according to the months. 
+
+•	Checked and updated the Data type to fitting once. 
+
+•	Placed the tables in a ‘bike_share’ Schema.
+
+•	Unified the various table into one table using Union All. 
+
+•	Deleted Missing values which was about 10% of the data overall.  
+
+•	Checked for Duplicates, which there were none. 
+
+•	Pulled ‘_bike’ extension out of rideable type column. 
+
+•	Pulled days of the week, month, calculated ride length, distance travelled(miles) to make the data easier to understand. 
+
+•	Changed column names to readable once. Eg ‘member_casual’ to ‘user_Type’ 
+
+#### After the cleaning the was about 4 million records of data left. 
+ 
+ 
+
+
+
+ 
+## 4. Analysis Phase
+
+It is important to understand how the data could help solve the current issue. 
+
+Therefore, a descriptive analysis was conducted to understand how casual and member riders use the bikes differently and how that influence their decision to opt for the service they chose. 
+ 
+Below are some of the investigations conducted. 
+
+•	Number of users for each user group 
+
+•	Number of bikes for each bike type
+
+•       Bike usage according to user group. 
+
+•	Number of bikes taken daily by each user group 
+
+•	Days with most rides 
+
+•	Days with less rides 
+
+•	Number of bikes return daily by user group. 
+
+•	Number of rides according to days length. 
+
+•	Number of rides according to user type (1 or more days ride) 
+
+•	Hours with less and most rides 
+
+•	Month with most rides 
+
+•	Month with less rides 
+
+•	Average distance covered per month.
+
+•	Average distance covered per month. 
+
+•	Average ride length covered per month. 
+
+•	Station with most rides. 
+
+•	Station with most rides. 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### 5. Share Phase 
+Bike Usage by both user groups. 
+
+
+![Screenshot 2024-03-23 170048](https://github.com/Gyamie/Cyclistic-Ride-Analysis-on-User-Groups/assets/106616470/d04f9fed-6e3f-47f7-8cdd-d7dfb4bd719a)
+
+From the analysis performed, member riders make up 64.64% of the customer margin of Cyclistic company whiles casual riders’ makeup 35.36%. 
+
+Assumptions: As the number of member riders makes up more than half of the customer margin, investigation showed that the revenue generated from the member is higher as compared to casual riders. 
+
+![Screenshot 2024-03-23 170132](https://github.com/Gyamie/Cyclistic-Ride-Analysis-on-User-Groups/assets/106616470/ed38d5c8-4a70-4b6d-b6b8-e268d478a186)
+The Users turn to use classic bikes more than electric bikes more but docked bikes are hardly used or preferred by both user groups. 
+
+
+![Screenshot 2024-03-23 170226](https://github.com/Gyamie/Cyclistic-Ride-Analysis-on-User-Groups/assets/106616470/ac1a6bdc-fdb1-4b35-848d-ba475d610fdd)
+
+It is also worth noting that for member riders the days preferred for rides are on weekdays whiles weekends are mostly preferred by casual riders. 
+
+![Screenshot 2024-03-23 170245](https://github.com/Gyamie/Cyclistic-Ride-Analysis-on-User-Groups/assets/106616470/38536d39-2203-4921-9bef-82359b2b1efd)
+summer has the most rides
+
+![Screenshot 2024-03-23 170252](https://github.com/Gyamie/Cyclistic-Ride-Analysis-on-User-Groups/assets/106616470/ef777d48-7330-479f-ae7a-4ee7a0f9190c)
+Both User groups take rides that rarely extend beyond 24 hours but on exceptionally cases, casual riders turn to take more trips than members that then to extend beyond 24 hours. 
+ 
+![Screenshot 2024-03-23 170259](https://github.com/Gyamie/Cyclistic-Ride-Analysis-on-User-Groups/assets/106616470/ce235306-bf1e-4658-8acf-6f7defb8ecdc)
+In terms of time both casual riders and member rides then to take a lot of trips around 5:00pm in the evening followed by 8:00 am which is the second highest time of rides. 
+
+![Screenshot 2024-03-23 170313](https://github.com/Gyamie/Cyclistic-Ride-Analysis-on-User-Groups/assets/106616470/3e03221c-3280-4793-a3ee-53be87dced27)
+
+For members the average distance covered is 20.30 kilometres and average ride length 215.2mins while for casual riders, the average distance covered is also 22.80 kilometres and average ride length 155.0mins. 
+
+
+
+## 6. Acts Phase 
+
+As a result of the above findings, below are some of the marketing strategies that could be implemented to get casual riders to go in for annual membership packages. 
+ 
+•	Casual riders could be educated on how cost effective going in for annual membership would be since the difference in time taken between both user groups is less like the time interval in hour, days length and period. 
+
+•	Also, the annual prices for electric bike usage should be made cost appropriate as compared to casual rides for electric use. 
+
+•	A discounted price could be given Saturdays to casual riders who turn to go for annual membership.
+
+•	During Seasons like Summer and Autum where the rides are at their peak, promotion could be run to push casual riders towards annual membership since it could help them save money. 
+
+•	The company could also leverage social media platforms to advertise the casual riders the benefits of opting for annual memberships from the above stated. 
+ 

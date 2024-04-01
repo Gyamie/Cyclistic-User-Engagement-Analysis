@@ -1,0 +1,175 @@
+
+with combine_table as (
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_01]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_02]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_03]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_04]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_05]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_06]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_07]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_08]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_09]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_10]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_11]
+UNION All
+
+select ride_id,
+       rideable_type,
+	   started_at,
+	   ended_at,
+	   start_station_name,
+	   end_station_name,
+	   start_lat,
+	   start_lng,
+	   end_lat,
+	   end_lng,
+	   member_casual
+from [bike_share].[2023_12]
+)
+
+---select *
+---from combine_table
+
+select * into bike_share.cyclistic_12_month
+from combine_table
